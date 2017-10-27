@@ -14,14 +14,15 @@ class DataToConsole {
     private static void print(Document doc, int depth) {
         Set<String> keys = doc.keySet();
         for (String key: keys) {
-            indent(depth);
             Object value = doc.get(key);
             Class type = value.getClass();
+            indent(depth);
             System.out.print(key + " => ");
             print(type, value, depth + 1);
-            indent(depth);
-            System.out.println("- - - - - - - - - - - - - - - - - - - -");
         }
+        indent(depth);
+        System.out.println("= = = = = = = = = = = = = = = = = = = =");
+
     }
 
     private static void indent(int depth) {
@@ -52,13 +53,14 @@ class DataToConsole {
             System.out.println("<<Empty list>>");
             return;
         }
+        System.out.println("List size: " + list.size());
+        indent(depth);
         System.out.println("[");
         for (int i = 0; i < list.size(); i++) {
             Object item = list.get(i);
             Class type = item.getClass();
             print(type, item, depth + 1);
         }
-        System.out.println("\n");
         indent(depth);
         System.out.println("]");
     }
